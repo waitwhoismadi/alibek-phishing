@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>PhishGuard</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="top">
+    <img src="icons/green-32.png" width="20" height="20" alt="">
+    <span class="brand">PhishGuard</span>
+  </header>
+
+  <main id="view" aria-live="polite">
+    <section id="loading" class="state">
+      <div class="spinner" aria-hidden="true"></div>
+      <p class="muted">Проверяем страницу…</p>
+    </section>
+
+    <section id="skipped" class="state" hidden>
+      <p class="headline">Эта страница не проверяется</p>
+      <p class="muted">PhishGuard анализирует только сайты по http и https. Служебные страницы браузера, локальные файлы и localhost пропускаются.</p>
+    </section>
+
+    <section id="error" class="state" hidden>
+      <p class="headline">Сервер недоступен</p>
+      <p class="muted" id="error-text"></p>
+      <p class="muted">Запустите бэкенд командой <code>uvicorn backend.main:app</code> и нажмите «Проверить заново». Пока сервер не работает, страницы не блокируются.</p>
+    </section>
+
+    <section id="result" class="state" hidden>
+      <p class="domain" id="domain"></p>
+      <div class="score">
+        <span class="risk" id="risk"></span>
+        <div>
+          <span class="verdict" id="verdict"></span>
+          <span class="muted small">оценка риска из 100</span>
+        </div>
+      </div>
+
+      <h2>Причины</h2>
+      <ul class="reasons" id="reasons"></ul>
+
+      <h2>Оценки модулей</h2>
+      <dl class="modules">
+        <div class="module"><dt>ML-модель</dt><dd><span class="meter"><span id="m-ml"></span></span><span class="val" id="v-ml"></span></dd></div>
+        <div class="module"><dt>Репутация</dt><dd><span class="meter"><span id="m-rep"></span></span><span class="val" id="v-rep"></span></dd></div>
+        <div class="module"><dt>Контент</dt><dd><span class="meter"><span id="m-content"></span></span><span class="val" id="v-content"></span></dd></div>
+      </dl>
+      <p class="muted small" id="meta"></p>
+    </section>
+  </main>
+
+  <footer>
+    <button type="button" id="recheck">Проверить заново</button>
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>

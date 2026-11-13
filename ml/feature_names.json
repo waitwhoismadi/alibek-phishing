@@ -1,0 +1,19 @@
+[
+  "domain_length",
+  "sld_length",
+  "num_dots",
+  "num_hyphens",
+  "num_digits",
+  "digit_ratio",
+  "domain_entropy",
+  "num_subdomains",
+  "longest_label",
+  "has_ip",
+  "has_at",
+  "has_port",
+  "is_punycode",
+  "suspicious_words",
+  "suspicious_tld",
+  "is_shortener",
+  "brand_in_subdomain"
+]
